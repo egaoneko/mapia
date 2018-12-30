@@ -8,7 +8,7 @@ describe('Map test', () => {
     const target: HTMLDivElement = document.createElement('div');
     const option: Option = {
       ...OPTION,
-      target,
+      target
     };
 
     const map: CanvasMap = new CanvasMap(option);
@@ -18,8 +18,6 @@ describe('Map test', () => {
       throw new Error('Invalid canvas');
     }
 
-    expect(canvas).toBeInstanceOf(HTMLCanvasElement);
-    expect(target.querySelector('canvas')).toBe(canvas);
     expect(canvas.width).toBe(target.clientWidth);
     expect(canvas.height).toBe(target.clientHeight);
   });
