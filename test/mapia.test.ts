@@ -1,8 +1,7 @@
-/**
- * Dummy test
- */
-describe("Dummy test", () => {
-  it("works if true is truthy", () => {
-    expect(true).toBeTruthy();
+import mapia from '../src/mapia';
+
+describe('mapia test', () => {
+  it('Check having a CanvasMap', () => {
+    expect(mapia).toHaveProperty('CanvasMap');
   });
 });

@@ -18,7 +18,8 @@
 <body>
 <div id="map" class="map"></div>
 <script>
-  var map = new mapia.Map();
+  var option = {target: document.querySelector('#map')};
+  var map = new mapia.CanvasMap(option);
   console.log(map);
 </script>
 </body>
