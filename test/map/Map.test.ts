@@ -1,14 +1,18 @@
-import BaseMap from '../../src/map/Map';
+import Map from '../../src/map/Map';
 import { Option } from '../../src/interface/Map';
-
-class Map extends BaseMap {
-  public resize(): void {
-    return;
-  }
-}
 
 describe('Map test', () => {
   const OPTION: Option = {};
+
+  it('test properties', () => {
+    const option: Option = {
+      ...OPTION,
+      target: document.createElement('div')
+    };
+    const map = new Map(option);
+    expect(map).toHaveProperty('element');
+    expect(map).toHaveProperty('renderer');
+  });
 
   it('throw exeption with an empty target', () => {
     const option: Option = {

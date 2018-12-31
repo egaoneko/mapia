@@ -1,5 +1,5 @@
-import CanvasMap from './map/CanvasMap';
+import Map from './map/Map';
 
 export default {
-  CanvasMap,
-}
+  Map
+};

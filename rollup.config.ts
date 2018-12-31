@@ -43,7 +43,8 @@ if (process.env.DEV_SERVER) {
     serve({
       open: true,
       verbose: true,
-      contentBase: ['']
+      contentBase: [''],
+      port: 8080
     })
   );
 }

@@ -1,17 +1,18 @@
 import Base from '../Base';
 import { Option } from '../interface/Map';
+import Renderer from '../renderer/Renderer';
+import CanvasRenderer from '../renderer/canvas/CanvasRenderer';
 
-export default abstract class Map extends Base {
-
-  public get element(): HTMLElement | undefined {
+export default class Map extends Base {
+  public get element(): HTMLElement {
     return this.target;
   }
 
-  protected static DEFAULT_OPTION: Option = {
-  }
+  protected static DEFAULT_OPTION: Option = {};
 
   protected option: Option;
-  protected target: HTMLElement | undefined;
+  protected target!: HTMLElement;
+  private renderer!: Renderer;
 
   constructor(option: Option) {
     super();
@@ -22,11 +23,12 @@ export default abstract class Map extends Base {
     this.init();
   }
 
-  public abstract resize(): void;
+  public resize(): void {}
 
   private init(): void {
     const option: Option = this.option;
     this.initTarget(option);
+    this.initRenderer();
   }
 
   private initTarget(option: Option): void {
@@ -47,5 +49,9 @@ export default abstract class Map extends Base {
     }
 
     this.target = target;
+  }
+
+  private initRenderer(): void {
+    this.renderer = new CanvasRenderer(this);
   }
 }
