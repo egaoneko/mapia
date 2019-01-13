@@ -15,6 +15,5 @@ describe('CanvasRenderer test', () => {
 
     expect(canvas.width).toBe(target.clientWidth);
     expect(canvas.height).toBe(target.clientHeight);
-    expect(canvas.style.cssText).toBe('width: 100%; height: 100%; display: block;');
   });
 });

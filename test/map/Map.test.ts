@@ -12,6 +12,8 @@ describe('Map test', () => {
     const map = new Map(option);
     expect(map).toHaveProperty('element');
     expect(map).toHaveProperty('renderer');
+    expect(map).toHaveProperty('view');
+    expect(map).toHaveProperty('option');
   });
 
   it('throw exeption with an empty target', () => {
@@ -55,7 +57,7 @@ describe('Map test', () => {
     expect(new Map(option).element).toBe(map);
   });
 
-  it('throw exeption with invalid object target', () => {
+  it('throw exception with invalid object target', () => {
     const option: Option = {
       ...OPTION,
       target: {} as HTMLElement

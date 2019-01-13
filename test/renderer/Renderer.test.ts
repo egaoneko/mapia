@@ -9,7 +9,7 @@ class TestRenderer extends Renderer {
 }
 
 describe('Renderer test', () => {
-  it('instanceof EventTarget', () => {
+  it('has map', () => {
     expect(new TestRenderer(getMapMock())).toHaveProperty('map');
   });
 });

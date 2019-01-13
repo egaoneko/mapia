@@ -1,23 +1,22 @@
 import Base from '../Base';
 import { Option } from '../interface/Map';
 import Renderer from '../renderer/Renderer';
-import CanvasRenderer from '../renderer/canvas/CanvasRenderer';
+import MapRenderer from '../renderer/MapRenderer';
+import View from '../view/View';
 
 export default class Map extends Base {
   public get element(): HTMLElement {
     return this.target;
   }
 
-  protected static DEFAULT_OPTION: Option = {};
-
   protected option: Option;
   protected target!: HTMLElement;
   private renderer!: Renderer;
+  private view!: View;
 
-  constructor(option: Option) {
+  constructor(option: Option = {}) {
     super();
     this.option = {
-      ...Map.DEFAULT_OPTION,
       ...option
     };
     this.init();
@@ -29,6 +28,7 @@ export default class Map extends Base {
     const option: Option = this.option;
     this.initTarget(option);
     this.initRenderer();
+    this.initView();
   }
 
   private initTarget(option: Option): void {
@@ -52,6 +52,9 @@ export default class Map extends Base {
   }
 
   private initRenderer(): void {
-    this.renderer = new CanvasRenderer(this);
+    this.renderer = new MapRenderer(this);
+  }
+  private initView(): void {
+    this.view = new View();
   }
 }

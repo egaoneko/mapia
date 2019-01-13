@@ -45,8 +45,5 @@ export default class CanvasRenderer extends Renderer {
 
     this.ctx = ctx;
     this._canvas = this.ctx.canvas;
-
-    this._canvas.style.cssText = 'width: 100%; height: 100%; display: block';
-    this.map.element.appendChild(this._canvas);
   }
 }
