@@ -8,6 +8,6 @@ export default class TileGrid extends Base {
   constructor(option: Option = {}) {
     super();
 
-    this.origin = option.origin || [0, 0];
+    this.origin = typeof option.origin !== 'undefined' ? option.origin : [0, 0];
   }
 }
