@@ -1,5 +1,5 @@
 import Renderer from './Renderer';
-import Map from '../map/Map';
+import BaseMap from '../map/BaseMap';
 import CanvasRenderer from './canvas/CanvasRenderer';
 import TileGrid from '../tile-grid/TileGrid';
 
@@ -13,7 +13,7 @@ export default class MapRenderer extends Renderer {
   private tileGrid: TileGrid;
   private renderer: CanvasRenderer;
 
-  constructor(map: Map) {
+  constructor(map: BaseMap) {
     super(map);
 
     this.tileGrid = new TileGrid();

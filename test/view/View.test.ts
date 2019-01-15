@@ -6,6 +6,7 @@ describe('View test', () => {
 
     expect(view).toHaveProperty('center');
     expect(view).toHaveProperty('zoom');
+    expect(view).toHaveProperty('extent');
     expect(view).toHaveProperty('minZoom');
     expect(view).toHaveProperty('maxZoom');
   });
@@ -16,6 +17,14 @@ describe('View test', () => {
 
     view = new View({ center: [10, 10] });
     expect(view['center']).toEqual([10, 10]);
+  });
+
+  it('test extent properties', () => {
+    let view: View = new View();
+    expect(view['extent']).toEqual([0, 0, 0, 0]);
+
+    view = new View({ extent: [10, 10, 20, 20] });
+    expect(view['extent']).toEqual([10, 10, 20, 20]);
   });
 
   it('test zoom properties', () => {

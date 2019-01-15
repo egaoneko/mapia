@@ -1,9 +1,9 @@
 import Renderer from '../../src/renderer/Renderer';
-import Map from '../../src/map/Map';
+import BaseMap from '../../src/map/BaseMap';
 import { getMapMock } from '../mock/map';
 
 class TestRenderer extends Renderer {
-  constructor(map: Map) {
+  constructor(map: BaseMap) {
     super(map);
   }
 }

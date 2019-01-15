@@ -1,6 +1,7 @@
 import Renderer from '../Renderer';
-import Map from '../../map/Map';
+import BaseMap from '../../map/BaseMap';
 import { createCanvasContext2D } from '../../util/dom';
+import { BROWSER_EVENT } from '../../enum/event';
 
 export default class CanvasRenderer extends Renderer {
   public get canvas(): HTMLCanvasElement {
@@ -10,7 +11,7 @@ export default class CanvasRenderer extends Renderer {
   private _canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
 
-  constructor(map: Map) {
+  constructor(map: BaseMap) {
     super(map);
 
     if (!map.element) {
@@ -19,6 +20,8 @@ export default class CanvasRenderer extends Renderer {
 
     this.initCanvas();
   }
+
+  public destroy(): void {}
 
   public resize(): void {
     if (!this.map.element || !this._canvas) {

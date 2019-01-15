@@ -9,7 +9,7 @@ describe('EventTarget test', () => {
   it('test addEventListener', () => {
     const mockCallback = jest.fn(x => x);
     eventTarget.addEventListener('test', mockCallback);
-    
+
     const listeners: any = eventTarget.listeners;
     expect(listeners['test'].length).toBe(1);
     expect(listeners['test'][0]).toBe(mockCallback);
@@ -18,7 +18,7 @@ describe('EventTarget test', () => {
   it('test removeEventListener', () => {
     const mockCallback = jest.fn(x => x);
     eventTarget.addEventListener('test', mockCallback);
-    
+
     const listeners: any = eventTarget.listeners;
     expect(listeners['test'].length).toBe(1);
 
@@ -29,14 +29,15 @@ describe('EventTarget test', () => {
   it('test dispatchEvent', () => {
     const mockCallback = jest.fn(x => x);
     eventTarget.addEventListener('test', mockCallback);
-    
+
     const listeners: any = eventTarget.listeners;
     expect(listeners['test'].length).toBe(1);
 
-    eventTarget.dispatchEvent({type: 'test'});
-    eventTarget.dispatchEvent({type: 'test'});
+    const origin: any = {};
+    eventTarget.dispatchEvent({ type: 'test', origin: origin });
+    eventTarget.dispatchEvent({ type: 'test', origin: origin });
     expect(mockCallback.mock.calls.length).toBe(2);
     expect(mockCallback.mock.results[0].value.type).toBe('test');
-    expect(mockCallback.mock.results[0].value.target).toBe(eventTarget);
+    expect(mockCallback.mock.results[0].value.origin).toBe(origin);
   });
 });

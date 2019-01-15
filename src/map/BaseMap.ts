@@ -3,8 +3,10 @@ import { Option } from '../interface/Map';
 import Renderer from '../renderer/Renderer';
 import MapRenderer from '../renderer/MapRenderer';
 import View from '../view/View';
+import Interaction from '../interaction/Interaction';
+import BrowserEventHandler from '../event/BrowserEventHandler';
 
-export default class Map extends Base {
+export default class BaseMap extends Base {
   public get element(): HTMLElement {
     return this.target;
   }
@@ -13,6 +15,8 @@ export default class Map extends Base {
   protected target!: HTMLElement;
   private renderer!: Renderer;
   private view!: View;
+  private interaction!: Interaction;
+  private browserEventHandler!: BrowserEventHandler;
 
   constructor(option: Option = {}) {
     super();
@@ -22,13 +26,20 @@ export default class Map extends Base {
     this.init();
   }
 
+  public destroy(): void {
+    this.interaction.destroy();
+    this.browserEventHandler.destroy();
+  }
+
   public resize(): void {}
 
   private init(): void {
     const option: Option = this.option;
     this.initTarget(option);
-    this.initRenderer();
+    this.initRenderer(this);
     this.initView();
+    this.initInteraction(this);
+    this.initBrowserEventHandler(this);
   }
 
   private initTarget(option: Option): void {
@@ -51,10 +62,19 @@ export default class Map extends Base {
     this.target = target;
   }
 
-  private initRenderer(): void {
-    this.renderer = new MapRenderer(this);
+  private initRenderer(map: BaseMap): void {
+    this.renderer = new MapRenderer(map);
   }
+
   private initView(): void {
     this.view = new View();
+  }
+
+  private initInteraction(map: BaseMap): void {
+    this.interaction = new Interaction({ map });
+  }
+
+  private initBrowserEventHandler(map: BaseMap): void {
+    this.browserEventHandler = new BrowserEventHandler({ map });
   }
 }

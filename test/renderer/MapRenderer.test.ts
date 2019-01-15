@@ -1,10 +1,10 @@
-import Map from '../../src/map/Map';
+import BaseMap from '../../src/map/BaseMap';
 import { getMapMock } from '../mock/map';
 import MapRenderer from '../../src/renderer/MapRenderer';
 
 describe('MapRenderer test', () => {
   it('test properties', () => {
-    const map: Map = getMapMock();
+    const map: BaseMap = getMapMock();
     const renderer: MapRenderer = new MapRenderer(map);
 
     expect(renderer).toHaveProperty('tileGrid');
@@ -13,7 +13,7 @@ describe('MapRenderer test', () => {
   });
 
   it('test valid canvas', () => {
-    const map: Map = getMapMock();
+    const map: BaseMap = getMapMock();
     const renderer: MapRenderer = new MapRenderer(map);
     const canvas: HTMLCanvasElement = renderer.canvas;
 

@@ -1,3 +1,5 @@
+import { Event } from '../interface/event';
+
 export default class EventTarget {
   private listeners: { [type: string]: Function[] } = {};
 
@@ -27,14 +29,13 @@ export default class EventTarget {
     }
   }
 
-  public dispatchEvent(event: { type: string, target: EventTarget }): void {
+  public dispatchEvent(event: Event): void {
     if (!(event.type in this.listeners)) {
       return;
     }
 
     const stack: Function[] = this.listeners[event.type];
     const l: number = stack.length;
-    event.target = this;
 
     for (let i: number = 0; i < l; i++) {
       stack[i].call(this, event);

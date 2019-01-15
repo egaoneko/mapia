@@ -1,10 +1,10 @@
-import Map from '../map/Map';
+import BaseMap from '../map/BaseMap';
 import Base from '../Base';
 
 export default abstract class Renderer extends Base {
-  protected map: Map;
+  protected map: BaseMap;
 
-  protected constructor(map: Map) {
+  protected constructor(map: BaseMap) {
     super();
     this.map = map;
   }

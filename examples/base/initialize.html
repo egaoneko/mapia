@@ -20,7 +20,15 @@
 <script>
   var option = {target: document.querySelector('#map')};
   var map = new mapia.Map(option);
-  console.log(map);
+  map.addEventListener('dragstart', function (e) {
+    console.log(e);
+  });
+  map.addEventListener('drag', function (e) {
+    console.log(e);
+  });
+  map.addEventListener('dragend', function (e) {
+    console.log(e);
+  });
 </script>
 </body>
 </html>

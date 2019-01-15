@@ -1,10 +1,10 @@
-import Map from '../../../src/map/Map';
+import BaseMap from '../../../src/map/BaseMap';
 import CanvasRenderer from '../../../src/renderer/canvas/CanvasRenderer';
 import { getMapMock } from '../../mock/map';
 
 describe('CanvasRenderer test', () => {
   it('test valid canvas', () => {
-    const map: Map = getMapMock();
+    const map: BaseMap = getMapMock();
     const target: HTMLElement = map.element;
     const renderer: CanvasRenderer = new CanvasRenderer(map);
     const canvas: HTMLCanvasElement = renderer.canvas;

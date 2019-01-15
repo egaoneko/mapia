@@ -1,5 +1,5 @@
-import Map from './map/Map';
+import BaseMap from './map/BaseMap';
 
 export default {
-  Map
+  Map: BaseMap
 };
