@@ -1,4 +1,4 @@
-import { Event } from '../interface/event';
+import { BaseEvent } from '../interface/baseEvent';
 
 export default class EventTarget {
   private listeners: { [type: string]: Function[] } = {};
@@ -29,7 +29,7 @@ export default class EventTarget {
     }
   }
 
-  public dispatchEvent(event: Event): void {
+  public dispatchEvent(event: BaseEvent): void {
     if (!(event.type in this.listeners)) {
       return;
     }
