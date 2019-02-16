@@ -1,22 +1,37 @@
 import Base from '../Base';
 import { Option } from '../interface/Map';
-import Renderer from '../renderer/Renderer';
 import MapRenderer from '../renderer/MapRenderer';
 import View from '../view/View';
 import Interaction from '../interaction/Interaction';
 import BrowserEventHandler from '../event/BrowserEventHandler';
+import Layer from '../layer/Layer';
 
 export default class BaseMap extends Base {
   public get element(): HTMLElement {
     return this.target;
   }
 
+  public get size(): [number, number] {
+    return [this.width, this.height];
+  }
+
+  public get layers(): Layer[] {
+    return this._layers;
+  }
+
+  public get renderer(): MapRenderer {
+    return this._renderer;
+  }
+
   protected option: Option;
   protected target!: HTMLElement;
-  private renderer!: Renderer;
+  private _renderer!: MapRenderer;
   private view!: View;
   private interaction!: Interaction;
   private browserEventHandler!: BrowserEventHandler;
+  private _layers: Layer[] = [];
+  private width: number = 0;
+  private height: number = 0;
 
   constructor(option: Option = {}) {
     super();
@@ -31,7 +46,32 @@ export default class BaseMap extends Base {
     this.browserEventHandler.destroy();
   }
 
-  public resize(): void {}
+  public resize(): void {
+    this.width = this.element.clientWidth;
+    this.height = this.element.clientHeight;
+    this._renderer.resize(this.width, this.height);
+  }
+
+  public addLayer(layer: Layer): void {
+    if (!layer) {
+      return;
+    }
+
+    this._layers.push(layer);
+    this.render();
+  }
+
+  public render(): void {
+    this.layers.forEach((layer: Layer) => {
+      requestAnimationFrame(() => {
+        layer.render(this);
+      });
+    });
+
+    requestAnimationFrame(() => {
+      this._renderer.render();
+    });
+  }
 
   private init(): void {
     const option: Option = this.option;
@@ -40,6 +80,7 @@ export default class BaseMap extends Base {
     this.initView();
     this.initInteraction(this);
     this.initBrowserEventHandler(this);
+    this.resize();
   }
 
   private initTarget(option: Option): void {
@@ -63,7 +104,7 @@ export default class BaseMap extends Base {
   }
 
   private initRenderer(map: BaseMap): void {
-    this.renderer = new MapRenderer(map);
+    this._renderer = new MapRenderer(map);
   }
 
   private initView(): void {

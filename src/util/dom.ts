@@ -1,12 +1,18 @@
 import { Point } from '../interface/coordinate';
 
 export function createCanvasContext2D(
-  width: number,
-  height: number
+  width?: number,
+  height?: number
 ): CanvasRenderingContext2D | null {
   const canvas: HTMLCanvasElement = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
+
+  if (typeof width === 'number') {
+    canvas.width = width;
+  }
+
+  if (typeof height === 'number') {
+    canvas.height = height;
+  }
 
   return canvas.getContext('2d');
 }

@@ -1,6 +1,6 @@
 import Base from '../Base';
 import { Coordinate } from '../interface/coordinate';
-import { Option } from '../interface/tile-grid';
+import { Option } from '../interface/tileGrid';
 import { Extent } from '../interface/extent';
 
 export default class TileGrid extends Base {

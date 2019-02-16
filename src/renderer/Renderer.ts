@@ -1,11 +1,19 @@
-import BaseMap from '../map/BaseMap';
 import Base from '../Base';
+import { Option } from '../interface/renderer';
 
-export default abstract class Renderer extends Base {
-  protected map: BaseMap;
+export default class Renderer extends Base {
+  public get canvas(): HTMLCanvasElement {
+    return this._canvas;
+  }
 
-  protected constructor(map: BaseMap) {
+  public get ctx(): CanvasRenderingContext2D {
+    return this._ctx;
+  }
+
+  protected _canvas!: HTMLCanvasElement;
+  protected _ctx!: CanvasRenderingContext2D;
+
+  constructor() {
     super();
-    this.map = map;
   }
 }

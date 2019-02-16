@@ -20,15 +20,14 @@
 <script>
   var option = {target: document.querySelector('#map')};
   var map = new mapia.Map(option);
-  map.addEventListener('dragstart', function (e) {
-    console.log(e);
+  var source = new mapia.ImageTileSource({
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
   });
-  map.addEventListener('drag', function (e) {
-    console.log(e);
+  var layer = new mapia.ImageTileLayer({
+    source: source
   });
-  map.addEventListener('dragend', function (e) {
-    console.log(e);
-  });
+
+  map.addLayer(layer);
 </script>
 </body>
 </html>
