@@ -18,16 +18,13 @@ export function createCanvasContext2D(
 }
 
 export function getMousePixel(element: HTMLElement, evt: Event): Point | null {
-  if (
-    typeof (evt as MouseEvent).clientX === 'undefined' ||
-    typeof (evt as MouseEvent).clientY === 'undefined'
-  ) {
+  if (typeof (evt as any).clientX === 'undefined' || typeof (evt as any).clientY === 'undefined') {
     return null;
   }
 
   const rect: ClientRect | DOMRect = element.getBoundingClientRect();
   return {
-    x: (evt as MouseEvent).clientX - rect.left,
-    y: (evt as MouseEvent).clientY - rect.top
+    x: (evt as any).clientX - rect.left,
+    y: (evt as any).clientY - rect.top
   };
 }
