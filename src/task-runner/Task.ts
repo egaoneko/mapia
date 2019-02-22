@@ -1,4 +1,4 @@
-import EventEmitter from './TaskRunner';
+import EventEmitter from 'eventemitter3';
 import { defer } from '../util/common';
 import { Deferred } from '../interface/util';
 import { TASK_STATE } from './const';
